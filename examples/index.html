@@ -1,0 +1,254 @@
+<html>
+<head>
+    <style type="text/css">
+        div {
+            border: solid black 1px;
+            display: inline-block;
+            padding: 10px;
+            margin: 10px;
+            font-size: 1.3em;
+        }
+        
+
+        .selected {
+            color:blue;
+
+        }
+        .image {
+            width: 500px;
+            height:500px;
+
+        }
+    </style>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/javascript" src="../react/react.js"></script>
+    <script type="text/javascript" src="../react/JSXTransformer.js"></script>
+    <script type="text/javascript" src="StarWars.js"></script>
+    
+    <script type="text/jsx">
+
+        var Tree =  React.createClass({
+            render : function () {
+                return (<div>
+                    <Authors onAuthorSelected={this.selectAuthor}/>
+                    <Quote author={this.state.author}/>
+                </div>);
+            },
+
+            getInitialState : function() {
+                return{
+                    author : ''
+                }
+            },
+
+            selectAuthor : function (newAuthor) {
+                return this.setState({author : newAuthor});
+            }
+        });
+
+        var Authors = React.createClass({
+
+            render : function () {
+                var handler = this.props.onAuthorSelected;
+
+                return (<div>
+                    {quotes.map(function(item) {
+                        return <Author itemValue={item} whenClick={handler} />;
+                    })}
+                </div>);
+            },
+
+        });
+
+        var Author = React.createClass({
+
+            render : function () {
+                var classname = this.state.selected ? 'selected' : '';
+            return (<div className={classname} onClick={this.handleClick}><img className="image" src={"ImageStarWars/" + this.props.itemValue.image} /></div>);
+            },
+
+            getInitialState : function () {
+                return {selected : false };
+            },
+
+            handleClick : function () {
+                this.props.whenClick(this.props.itemValue);
+                this.setState({selected : true});
+            }
+        });
+                  
+
+        var Quote = React.createClass({
+
+            render : function () {
+                return (<div>
+                    la citation de {this.props.author.author} est : {this.props.author.quote} 
+                </div>);
+            },
+
+        });
+
+        React.render(<Tree />, document.getElementById('root'));
+
+    </script>
+
+    <div id="root2"></div>
+
+    <script type="text/javascript" src="../react/react.js"></script>
+    <script type="text/javascript" src="../react/JSXTransformer.js"></script>
+    <script type="text/javascript">
+                        
+    </script>
+    
+    <script type="text/jsx">
+
+        var Tree2 =  React.createClass({
+            render : function () {
+                return (<div>
+                    <Authors2 onAuthorSelected={this.selectAuthor}/>
+                    <Quote2 author={this.state.author}/>
+                </div>);
+            },
+
+            getInitialState : function() {
+                return{
+                    author : ''
+                }
+            },
+
+            selectAuthor : function (newAuthor) {
+                return this.setState({author : newAuthor});
+            }
+        });
+
+        var Authors2 = React.createClass({
+
+            render : function () {
+                var handler = this.props.onAuthorSelected;
+
+                return (<div>
+                    {quotes.map(function(item) {
+                        return <Author2 itemValue={item} whenClick={handler} />;
+                    })}
+                </div>);
+            },
+
+        });
+
+        var Author2 = React.createClass({
+
+            render : function () {
+                var classname = this.state.selected ? 'selected' : '';
+            return (<div className={classname} onClick={this.handleClick}><img className="image" src={"ImageStarWars/" + this.props.itemValue.image} /></div>);
+            },
+
+            getInitialState : function () {
+                return {selected : false };
+            },
+
+            handleClick : function () {
+                this.props.whenClick(this.props.itemValue);
+                this.setState({selected : true});
+            }
+        });
+
+        var ChaineAleatoire = function ChaineAleatoire(nbcar)
+        {
+            var ListeCar = new Array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9");
+            var Chaine ='';
+            for(i = 0; i < nbcar; i++)
+            {
+                Chaine = Chaine + ListeCar[Math.floor(Math.random()*ListeCar.length)];
+            }
+            return Chaine;
+        }       
+
+        var Quote2 = React.createClass({
+
+            render : function () {
+                return (<div>
+                    La chaine de caractère aléatoire de  {this.props.author.author} est : {ChaineAleatoire(10)}
+                </div>);
+            },
+
+        });
+
+        React.render(<Tree2 />, document.getElementById('root2'));
+    </script>
+
+    <div id="root3"></div>
+
+    <script type="text/jsx">
+        var Tree3 =  React.createClass({
+            render : function () {
+                return (<div>
+                    <Authors3 onAuthorSelected={this.selectAuthor}/>
+                    <Quote3 author={this.state.author}/>
+                </div>);
+            },
+
+            getInitialState : function() {
+                return{
+                    author : ''
+                }
+            },
+
+            selectAuthor : function (newAuthor) {
+                return this.setState({author : newAuthor});
+            }
+        });
+
+        var Authors3 = React.createClass({
+
+            render : function () {
+                var handler = this.props.onAuthorSelected;
+
+                return (<div>
+                    {quotes.map(function(item) {
+                        return <Author3 itemValue={item} whenClick={handler} />;
+                    })}
+                </div>);
+            },
+
+        });
+
+        var Author3 = React.createClass({
+
+            render : function () {
+                var classname = this.state.selected ? 'selected' : '';
+                return (<div className={classname} onClick={this.handleClick}>{this.props.itemValue.quote}</div>);
+            },
+
+            getInitialState : function () {
+                return {selected : false };
+            },
+
+            handleClick : function () {
+                this.props.whenClick(this.props.itemValue);
+                this.setState({selected : true});
+            }
+        });
+                  
+
+        var Quote3 = React.createClass({
+
+            render : function () {
+                return (<div>
+                    L'auteur de "{this.props.author.quote}" est : {this.props.author.author} 
+                </div>);
+            },
+
+        });
+
+        React.render(<Tree3 />, document.getElementById('root3'));
+    </script>
+
+
+</body>
+</html>
